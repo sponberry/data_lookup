@@ -8,8 +8,6 @@ const client = new ApolloClient({
 })
 
 function App() {
-  
-
   useEffect(() => {
     const query = gql`
       query {
@@ -22,7 +20,7 @@ function App() {
         }
       }
     `
-    
+
     client.query({ query })
       .then((response) => {
         console.log(response.data)
