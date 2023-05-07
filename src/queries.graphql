@@ -1,0 +1,9 @@
+query GetCustomers {
+  allPersons {
+    forename
+    surname
+    contact_number
+    email
+    postcode
+  }
+}

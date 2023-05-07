@@ -1,26 +1,35 @@
-import './App.css';
-import { useEffect } from 'react';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
-import { GET_CUSTOMERS } from './queries';
-import { useQuery } from '@apollo/client';
-import { gql } from '../src/__generated__/gql';
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4000',
-  cache: new InMemoryCache(),
-})
+import React from "react";
+import "./App.css";
+import { useGetCustomersQuery } from "./generated/graphql";
+import CustomerItem from "./Components/CustomerItem";
 
 function App() {
-  useEffect(() => {
-    client.query({ GET_CUSTOMERS })
-      .then((response) => {
-        console.log(response.data)
-      })
-  }, [])
+  const { data, loading, error } = useGetCustomersQuery();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    console.log(error);
+    return <p>An error occurred. Please refresh the page.</p>;
+  }
+
+  if (!data) {
+    return <p>No data.</p>;
+  }
 
   return (
-    <div className="App">
-      <p>Initial app setup</p>
+    <div className='App'>
+      <h1>Customer List</h1>
+      {data.allPersons.map((person) => {
+        return (
+          <CustomerItem
+            customer={person}
+            key={person.email}
+          />
+        );
+      })}
     </div>
   );
 }
