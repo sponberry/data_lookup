@@ -1,6 +1,9 @@
 import './App.css';
 import { useEffect } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { GET_CUSTOMERS } from './queries';
+import { useQuery } from '@apollo/client';
+import { gql } from '../src/__generated__/gql';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
@@ -9,19 +12,7 @@ const client = new ApolloClient({
 
 function App() {
   useEffect(() => {
-    const query = gql`
-      query {
-        allCustomers  {
-          email,
-          forename,
-          surname,
-          contact_number,
-          postcode,
-        }
-      }
-    `
-
-    client.query({ query })
+    client.query({ GET_CUSTOMERS })
       .then((response) => {
         console.log(response.data)
       })
