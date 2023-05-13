@@ -1,5 +1,5 @@
 import React from "react";
-import { Customer } from "../../types";
+import { Customer } from "../types";
 
 export default function CustomerItem({ customer }: { customer: Customer }) {
   return (

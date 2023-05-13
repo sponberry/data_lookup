@@ -1,35 +1,39 @@
 import React from "react";
 import "./App.css";
-import { useGetCustomersQuery } from "./generated/graphql";
-import CustomerItem from "./Components/CustomerItem";
+import CustomerList from "./Customer List";
+import ProductList from "./Product List";
+
+import {
+  BrowserRouter as Router,
+  //Route, Link, Switch
+} from "react-router-dom";
 
 function App() {
-  const { data, loading, error } = useGetCustomersQuery();
-
-  if (loading) {
-    return <p>Loading...</p>;
+  {
+    /* <Router>
+        <Container>
+          <Header as="h1">Patientor</Header>
+          <Button as={Link} to="/" primary>
+            Home
+          </Button>
+          <Divider hidden />
+          <Switch>
+            <Route path="/patients/:id">
+              <PatientViewPage />
+            </Route>
+            <Route path="/">
+              <PatientListPage />
+            </Route>
+          </Switch>
+        </Container>
+      </Router> */
   }
-
-  if (error) {
-    console.log(error);
-    return <p>An error occurred. Please refresh the page.</p>;
-  }
-
-  if (!data) {
-    return <p>No data.</p>;
-  }
-
   return (
     <div className='App'>
-      <h1>Customer List</h1>
-      {data.allCustomers.map((customer) => {
-        return (
-          <CustomerItem
-            customer={customer}
-            key={customer.email}
-          />
-        );
-      })}
+      <Router>
+        <CustomerList />
+        <ProductList />
+      </Router>
     </div>
   );
 }
