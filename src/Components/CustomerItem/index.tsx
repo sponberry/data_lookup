@@ -1,7 +1,7 @@
 import React from "react";
-import { Person } from "../../types";
+import { Customer } from "../../types";
 
-export default function CustomerItem({ customer }: { customer: Person }) {
+export default function CustomerItem({ customer }: { customer: Customer }) {
   return (
     <li key={customer.email}>
       <p>

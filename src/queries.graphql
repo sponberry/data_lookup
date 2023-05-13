@@ -1,9 +1,19 @@
 query GetCustomers {
-  allPersons {
+  allCustomers {
     forename
     surname
     contact_number
     email
     postcode
+  }
+}
+
+query GetProducts {
+  allProducts {
+    vin
+    colour
+    make
+    model
+    price
   }
 }

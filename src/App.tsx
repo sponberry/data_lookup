@@ -22,11 +22,11 @@ function App() {
   return (
     <div className='App'>
       <h1>Customer List</h1>
-      {data.allPersons.map((person) => {
+      {data.allCustomers.map((customer) => {
         return (
           <CustomerItem
-            customer={person}
-            key={person.email}
+            customer={customer}
+            key={customer.email}
           />
         );
       })}

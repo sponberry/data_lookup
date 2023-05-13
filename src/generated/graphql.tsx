@@ -15,33 +15,47 @@ export type Scalars = {
   Float: number;
 };
 
-export type Person = {
-  __typename?: "Person";
-  contact_number: Scalars["Float"];
+export type Customer = {
+  __typename?: "Customer";
+  contact_number: Scalars["String"];
   email: Scalars["String"];
   forename: Scalars["String"];
   postcode: Scalars["String"];
   surname: Scalars["String"];
 };
 
-export type Query = {
-  __typename?: "Query";
-  allPersons: Array<Person>;
-  findPerson?: Maybe<Person>;
-  personCount: Scalars["Int"];
+export type Product = {
+  __typename?: "Product";
+  colour: Scalars["String"];
+  make: Scalars["String"];
+  model: Scalars["String"];
+  price: Scalars["Float"];
+  vin: Scalars["String"];
 };
 
-export type QueryFindPersonArgs = {
-  name: Scalars["String"];
+export type Query = {
+  __typename?: "Query";
+  allCustomers: Array<Customer>;
+  allProducts: Array<Product>;
+  customerCount: Scalars["Int"];
+  findCustomer?: Maybe<Customer>;
+};
+
+export type QueryFindCustomerArgs = {
+  email: Scalars["String"];
 };
 
 export type GetCustomersQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetCustomersQuery = { __typename?: "Query" } & { allPersons: Array<{ __typename?: "Person" } & Pick<Person, "forename" | "surname" | "contact_number" | "email" | "postcode">> };
+export type GetCustomersQuery = { __typename?: "Query" } & { allCustomers: Array<{ __typename?: "Customer" } & Pick<Customer, "forename" | "surname" | "contact_number" | "email" | "postcode">> };
+
+export type GetProductsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetProductsQuery = { __typename?: "Query" } & { allProducts: Array<{ __typename?: "Product" } & Pick<Product, "vin" | "colour" | "make" | "model" | "price">> };
 
 export const GetCustomersDocument = gql`
   query GetCustomers {
-    allPersons {
+    allCustomers {
       forename
       surname
       contact_number
@@ -77,3 +91,41 @@ export function useGetCustomersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetCustomersQueryHookResult = ReturnType<typeof useGetCustomersQuery>;
 export type GetCustomersLazyQueryHookResult = ReturnType<typeof useGetCustomersLazyQuery>;
 export type GetCustomersQueryResult = Apollo.QueryResult<GetCustomersQuery, GetCustomersQueryVariables>;
+export const GetProductsDocument = gql`
+  query GetProducts {
+    allProducts {
+      vin
+      colour
+      make
+      model
+      price
+    }
+  }
+`;
+
+/**
+ * __useGetProductsQuery__
+ *
+ * To run a query within a React component, call `useGetProductsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProductsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetProductsQuery(baseOptions?: Apollo.QueryHookOptions<GetProductsQuery, GetProductsQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetProductsQuery, GetProductsQueryVariables>(GetProductsDocument, options);
+}
+export function useGetProductsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProductsQuery, GetProductsQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetProductsQuery, GetProductsQueryVariables>(GetProductsDocument, options);
+}
+export type GetProductsQueryHookResult = ReturnType<typeof useGetProductsQuery>;
+export type GetProductsLazyQueryHookResult = ReturnType<typeof useGetProductsLazyQuery>;
+export type GetProductsQueryResult = Apollo.QueryResult<GetProductsQuery, GetProductsQueryVariables>;
