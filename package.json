@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "compile": "graphql-codegen",
-    "watch": "graphql-codegen -w"
+    "watch": "graphql-codegen -w"  
   },
   "eslintConfig": {
     "extends": [

@@ -20,14 +20,16 @@ export default function CustomerList() {
   return (
     <div>
       <h1>Customer List</h1>
-      {data.allCustomers.map((customer) => {
-        return (
-          <CustomerItem
-            customer={customer}
-            key={customer.email}
-          />
-        );
-      })}
+      <ul>
+        {data.allCustomers.map((customer) => {
+          return (
+            <CustomerItem
+              customer={customer}
+              key={customer.email}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 }

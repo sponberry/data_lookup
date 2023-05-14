@@ -18,16 +18,18 @@ export default function ProductList() {
     return <p>No data.</p>;
   }
   return (
-    <div>
+    <div data-testid='product-document'>
       <h1>Product List</h1>
-      {data.allProducts.map((product) => {
-        return (
-          <ProductItem
-            product={product}
-            key={product.vin}
-          />
-        );
-      })}
+      <ul data-testid='product-list'>
+        {data.allProducts.map((product) => {
+          return (
+            <ProductItem
+              product={product}
+              key={product.vin}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 }
