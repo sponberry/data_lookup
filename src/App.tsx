@@ -7,21 +7,40 @@ function App() {
   const [page, setPage] = useState("/");
   if (page === "customers") {
     return (
-      <div id='App'>
-        <button onClick={() => setPage("/")}>Go back</button>
+      <div
+        className='App'
+        id='App'
+      >
+        <button
+          className='back-btn'
+          onClick={() => setPage("/")}
+        >
+          Go back
+        </button>
         <CustomerList />
       </div>
     );
   } else if (page === "products") {
     return (
-      <div id='App'>
-        <button onClick={() => setPage("/")}>Go back</button>
+      <div
+        className='App'
+        id='App'
+      >
+        <button
+          className='back-btn'
+          onClick={() => setPage("/")}
+        >
+          Go back
+        </button>
         <ProductList />
       </div>
     );
   } else {
     return (
-      <div id='App'>
+      <div
+        className='App'
+        id='App'
+      >
         <h1>Select data to request</h1>
         <button
           id='customerBtn'
