@@ -5,6 +5,8 @@
   font-family: 'Figtree', sans-serif;
   padding: 2rem 4rem;
   max-width: 1200px;
+  display: block;
+  margin: 0 auto;
 }
 
 h1 {
@@ -49,7 +51,7 @@ ul {
 
 li {
   list-style-type: none;
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   border-bottom: 1px solid #6362cd;
   width: 500px;
 }
